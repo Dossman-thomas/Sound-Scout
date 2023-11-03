@@ -1,4 +1,4 @@
-// setup
+// background setup
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -6,32 +6,40 @@ canvas.height = window.innerHeight;
 
 console.log(ctx);
 const gradient = ctx.createLinearGradient(0,0,0, canvas.height);
+// particle colors
 gradient.addColorStop(0, 'darkblue');
-gradient.addColorStop(0.5, 'white');
+gradient.addColorStop(0.6, 'red');
 gradient.addColorStop(1, 'lightblue');
 ctx.fillStyle = gradient;
-ctx.strokeStyle = 'white';
+// lines for particle connection
+ctx.strokeStyle = 'orange';
 
 class Particle {
-    constructor(effect){
+    constructor(effect, track){
         this.effect = effect;
-        this.radius = Math.floor(Math.random() * 7 + 3);
+        this.track = track;
+        // size of the particles
+        this.radius = Math.floor(Math.random() * 3 + 3);
         this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2);
-        this.y = - Math.random() * this.effect.height * 0.5;
-        this.vx = Math.random() * 1 - 0.5;
+        this.y = - Math.random() * this.effect.height * 0.6 + 100;
+        this.vx = Math.random() * 1 - 0.8;
         this.vy = 0;
-        this.gravity = this.radius * 0.001;
-        this.friction = 0.95;
+        this.gravity = this.radius * 0.00009;
+        this.friction = 0.90;
         this.width = this.radius * 2;
         this.height = this.radius * 2;
     }
-    draw(context){
+    draw(context, canvas){
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         context.fill();
         if (this.effect.debug){
+            context.font = "30px Arial";
+            context.fillText("Hello World", 120, 50);
+            // document.querySelector("#a1").setAttribute("style", "top: " + this.y + "px;left:" + this.x + "px")
             context.strokeRect(this.x - this.radius, this.y - this.radius, 
                 this.radius * 2, this.radius * 2);
+                console.log(context);
         }
     }
     update(){
@@ -108,14 +116,15 @@ class Effect {
         });
     }
     createParticles(){
+        var tracks = ["a", "b", "c"]
         for (let i = 0; i < this.numberOfParticles; i++){
             this.particles.push(new Particle(this));
         }
     }
-    handleParticles(context){
+    handleParticles(context, canvas){
         this.connectParticles(context);
         this.particles.forEach(particle => {
-            particle.draw(context);
+            particle.draw(context, canvas);
             particle.update();
         });
         if (this.debug){
@@ -162,7 +171,7 @@ const effect = new Effect(canvas, ctx);
 
 function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    effect.handleParticles(ctx);
+    effect.handleParticles(ctx, canvas);
     requestAnimationFrame(animate);
 }
 animate();

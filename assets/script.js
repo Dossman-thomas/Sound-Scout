@@ -174,4 +174,4 @@ function animate(){
     effect.handleParticles(ctx, canvas);
     requestAnimationFrame(animate);
 }
-animate();
+// animate();

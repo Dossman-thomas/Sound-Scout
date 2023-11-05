@@ -2,9 +2,9 @@
 // Last.FM Music API 
 function lastFm(query) {
     //  Url for audio scrabbler including the api key 
-        // var apiKey = "9fa5d5bc44bff94e3d5b26efc213830f";
-        // var url = "https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+query+"&api_key="+apiKey+"&format=json";
-        var url = "https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+query+"&api_key=9fa5d5bc44bff94e3d5b26efc213830f&format=json";
+        var apiKey = "9fa5d5bc44bff94e3d5b26efc213830f";
+        var url = "https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+query+"&api_key="+apiKey+"&format=json";
+        // var url = "https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+query+"&api_key=9fa5d5bc44bff94e3d5b26efc213830f&format=json";
         fetch(url)
         .then((response) => response.json())
         .then((data) => renderlastFm(data));
@@ -19,23 +19,25 @@ function renderlastFm(data) {
     console.log(data.similarartists)
 
     let resultsDiv = document.getElementById("results");
-    resultsDiv.innerHTML =""; //Clear previous Search Results
-
+    resultsDiv.innerHTML = ""; // Clear previous Search Results
+  
     for (let i = 0; i < data.similarartists.artist.length; i++) {
-        let artist = data.similarartists.artist[i].name;
-        let match = data.similarartists.artist[i].match;
-        let artistDiv = document.createElement("div");
-        artistDiv.textContent = `Artist: ${artist}, Match: ${match}`;
-        resultsDiv.appendChild(artistDiv);
+      let artist = {
+        name: data.similarartists.artist[i].name,
+        match: data.similarartists.artist[i].match,
+      };
+      let artistDiv = document.createElement("div");
+      artistDiv.textContent = `Artist: ${artist.name}, Match: ${artist.match}`;
+      resultsDiv.appendChild(artistDiv);
     }
 }
 
 function handleSearch() {
-    let artistInput = document.getElementById("#artistInput");
+    let artistInput = document.getElementById("artistInput");
     let artist = artistInput.value;
-
-    lastFm(artist);
-}
+    
+    lastFm(artist, displayArtist);
+  }
 
 
 

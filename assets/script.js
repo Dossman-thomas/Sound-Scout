@@ -3,9 +3,13 @@ const canvas = document.getElementById('canvas1');
 const inputDiv = document.getElementById('inputDiv');
 const inputField = document.getElementById('artistInput');
 const searchButton = document.querySelector('#inputDiv button');
-const ctx = canvas.getContext('2d');
-const canvasRect = canvas.getBoundingClientRect();
 
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+
+// const canvasRect = canvas.getBoundingClientRect();
 // const canvasX = canvasRect.left;
 // const canvasY = canvasRect.top;
 // inputField.style.position = 'absolute';
@@ -15,8 +19,7 @@ const canvasRect = canvas.getBoundingClientRect();
 // searchButton.style.left = (canvasX + inputField.offsetWidth + 10) + 'px';
 // searchButton.style.top = (canvasY + 10) + 'px';
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
 
 console.log(ctx);
 const gradient = ctx.createLinearGradient(0,0,0, canvas.height);

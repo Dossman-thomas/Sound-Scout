@@ -8,16 +8,34 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+/*This JavaScript code calculates the position of the "Sound Scout" caption 
+using `getBoundingClientRect()` 
+positioning the input div and search button below it, 
+centered on the canvas, both on initial load and on window resize. 
+*/
 
-// const canvasRect = canvas.getBoundingClientRect();
-// const canvasX = canvasRect.left;
-// const canvasY = canvasRect.top;
-// inputField.style.position = 'absolute';
-// searchButton.style.position = 'absolute';
-// inputField.style.left = canvasX + 'px';
-// inputField.style.top = (canvasY + 10) + 'px';
-// searchButton.style.left = (canvasX + inputField.offsetWidth + 10) + 'px';
-// searchButton.style.top = (canvasY + 10) + 'px';
+
+function centerInputDiv() {
+    // Get the caption and inputDiv elements
+    const caption = document.getElementById('caption');
+  
+    // Calculate the position of the inputDiv
+    const captionRect = caption.getBoundingClientRect();
+    const captionBottom = captionRect.bottom + window.scrollY;
+    const inputDivHeight = inputDiv.offsetHeight;
+  
+    const inputDivTop = captionBottom + 20; // Adjust this value as needed for spacing
+  
+    // Set the position of the inputDiv
+    inputDiv.style.position = 'absolute';
+    inputDiv.style.left = '50%';
+    inputDiv.style.top = `${inputDivTop}px`;
+    inputDiv.style.transform = 'translateX(-50%)';
+  }
+  
+  centerInputDiv();
+
+  window.addEventListener('resize', centerInputDiv);
 
 
 
@@ -191,9 +209,6 @@ function animate(){
     requestAnimationFrame(animate);
 }
 
-window.addEventListener('resize', function() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
+
 
 // animate();

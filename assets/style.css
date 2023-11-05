@@ -21,3 +21,13 @@ h1 {
     transform: translate(-50%, -50%);
     border-top: 5px solid white;
 }
+
+#inputDiv {
+    position: absolute;
+    text-align: center;
+  }
+  
+  #inputDiv input, #inputDiv button {
+    display: block;
+    margin: 10px auto;
+  }

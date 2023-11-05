@@ -1,6 +1,20 @@
 // background setup
 const canvas = document.getElementById('canvas1');
+const inputDiv = document.getElementById('inputDiv');
+const inputField = document.getElementById('artistInput');
+const searchButton = document.querySelector('#inputDiv button');
 const ctx = canvas.getContext('2d');
+const canvasRect = canvas.getBoundingClientRect();
+
+// const canvasX = canvasRect.left;
+// const canvasY = canvasRect.top;
+// inputField.style.position = 'absolute';
+// searchButton.style.position = 'absolute';
+// inputField.style.left = canvasX + 'px';
+// inputField.style.top = (canvasY + 10) + 'px';
+// searchButton.style.left = (canvasX + inputField.offsetWidth + 10) + 'px';
+// searchButton.style.top = (canvasY + 10) + 'px';
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -29,7 +43,7 @@ class Particle {
         this.width = this.radius * 2;
         this.height = this.radius * 2;
     }
-    draw(context, canvas){
+    draw(context){
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         context.fill();
@@ -116,7 +130,6 @@ class Effect {
         });
     }
     createParticles(){
-        var tracks = ["a", "b", "c"]
         for (let i = 0; i < this.numberOfParticles; i++){
             this.particles.push(new Particle(this));
         }
@@ -174,4 +187,10 @@ function animate(){
     effect.handleParticles(ctx, canvas);
     requestAnimationFrame(animate);
 }
+
+window.addEventListener('resize', function() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
 // animate();

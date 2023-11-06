@@ -25,6 +25,7 @@ h1 {
   
   #inputDiv {
     text-align: center;
+    width: 45%;
   }
   
   #inputDiv input, #inputDiv button {

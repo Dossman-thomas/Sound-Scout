@@ -1,18 +1,18 @@
 
 // Last.FM Music API 
-function lastFm(query) {
+function lastFm(query, callback) {
     //  Url for audio scrabbler including the api key 
         var apiKey = "9fa5d5bc44bff94e3d5b26efc213830f";
         var url = "https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+query+"&api_key="+apiKey+"&format=json";
         // var url = "https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+query+"&api_key=9fa5d5bc44bff94e3d5b26efc213830f&format=json";
         fetch(url)
         .then((response) => response.json())
-        .then((data) => renderlastFm(data));
+        .then((data) => callback(data));
        
     }
     
 function renderlastFm(data) {
-
+    console.log(data)
     console.log("Last.FM Related Artist List: " + data)
     console.log("Top Match: " + data.similarartists.artist[0].match)
     console.log("Similar Artist: " + data.similarartists.artist[0].name)
@@ -29,15 +29,16 @@ function renderlastFm(data) {
       let artistDiv = document.createElement("div");
       artistDiv.textContent = `Artist: ${artist.name}, Match: ${artist.match}`;
       resultsDiv.appendChild(artistDiv);
+      
     }
 }
 
 function handleSearch() {
-    let artistInput = document.getElementById("artistInput");
-    let artist = artistInput.value;
-    
-    lastFm(artist, displayArtist);
-  }
+  let artistInput = document.getElementById("artistInput");
+  let artist = artistInput.value;
+
+  lastFm(artist, renderlastFm);
+}
 
 
 

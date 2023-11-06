@@ -4,20 +4,52 @@
     box-sizing: border-box;
 }
 
+body {
+
+}
+
 #canvas1 {
-    background: black;
+    background: rgb(20, 91, 149);
     position: absolute;
     top: 0;
     left: 0;
+    opacity: .4;
+    z-index: -1;
+}
+
+header {
+    background-color: rgb(20, 20, 20);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.foot {
+    background: rgb(20,20,20);
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+}
+
+.notification {
+    height: 40vh;
+}
+.hero {
+    background-color: rgb(159, 196, 196);
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 h1 {
     color: white;
-    font-size: 80px;
-    position: absolute;
+    font-size: 2.5rem;
     font-family: Impact, cursive;
-    top: 50%;
+
+    /* position: absolute; */
+    
+    /* top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    border-top: 5px solid white;
+    transform: translate(-50%, -50%); */
+    /* border-top: 5px solid white; */
 }

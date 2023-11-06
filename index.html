@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Particles</title>
+    <title>Sound Scout</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
@@ -12,14 +12,58 @@
 
 </head>
 <body>
-
     
-    
+    <header>
 
-    <canvas id="canvas1"></canvas>
-    <h1 id="caption">Sound Scout</h1>
+      <h1 id="caption">Sound Scout</h1>
 
-    <script src="./assets/script.js"></script>
+      <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+
+    </header>
+
+    <!-- <canvas id="canvas1"></canvas> -->
+
+    <section class="hero">
+      <div class="hero-body">
+
+        <p class="title">
+          Similar Artist Finder
+        </p>
+
+        <input class="input is-medium" type="text" placeholder="input an artist or band name" id="inputDiv">
+
+        <button class="button">Submit</button>
+
+        <div id="results"></div>
+
+      </div>
+    </section>
+
+    <div id="local-storage"></div>
+
+    <div class="container is-fluid">
+      <div class="notification is-dark">
+
+        <h2>Popular Artists:</h2>
+
+        <ul id="pop-artists"></ul>
+
+      </div>
+    </div>
+
+    <footer>
+        <p>
+          Sound Scout built by Nick, Zoe, Angel and Tom
+        </p>
+    </footer>
+
+
+
+    <!-- <script src="./assets/script.js"></script> -->
     <script src="./assets/index.js"></script>
 </body>
 </html>

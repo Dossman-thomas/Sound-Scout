@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    background-color: black;
+}
+
 #canvas1 {
     background: rgb(20, 91, 149);
     position: absolute;
@@ -18,7 +22,7 @@ header {
     padding: 1.5rem;
     margin-bottom: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -34,18 +38,39 @@ footer {
     align-items: center;
 }
 
+form {
+    display: flex;
+    align-items: center;
+}
+
 .container {
     margin-bottom: 1rem;
 }
 
+.similarArtist {
+    background-color: black;
+    color: white;
+    border: none;
+
+}
+
 #results {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
-    width: 50vw;
+    flex-wrap: wrap;
+    gap: .5rem;
+    width: 80vw;
     margin: 0 auto;
     margin-top: 1rem;
+}
+
+#submit-btn {
+    padding: 1.6rem;
+    background-color: rgb(255, 73, 36);
+    color: white;
+    border: none;
 }
 
 .notification {
@@ -53,7 +78,8 @@ footer {
 }
 
 .hero {
-    background-color: rgb(159, 196, 196);
+    background-color: rgb(113, 113, 113);
+    /* opacity: .7; */
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -67,4 +93,5 @@ h1 {
 h2 {
     font-size: 1.5rem;
     border-bottom: 1px solid white;
+    margin-bottom: 1rem;
 }

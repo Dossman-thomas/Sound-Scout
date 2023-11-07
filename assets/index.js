@@ -4,6 +4,7 @@ const inputField = document.getElementById("artistInput");
 const searchButton = document.querySelector("#inputDiv button");
 const resultsDiv = document.getElementById("results");
 const displayResultsDiv = document.getElementById("displayResults");
+const displayTracks = document.getElementById("top-tracks");
 
 searchButton.addEventListener("click", handleSearch);
 
@@ -66,12 +67,16 @@ async function rapidData(event) {
     },
   };
 
+  displayTracks.innerHTML = "";
   try {
     const response = await fetch(url, options);
     const result = await response.json();
     console.log(result);
     for (let i = 0; i < result.tracks.hits.length; i++) {
       console.log(result.tracks.hits[i].track.title);
+      var topTracks = document.createElement("li");
+      topTracks.textContent = result.tracks.hits[i].track.title;
+      displayTracks.appendChild(topTracks);
     }
   } catch (error) {
     console.error(error);

@@ -3,8 +3,7 @@
 function lastFm(query, callback) {
     //  Url for audio scrabbler including the api key 
         var apiKey = "9fa5d5bc44bff94e3d5b26efc213830f";
-        var url = "https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+query+"&api_key="+apiKey+"&format=json";
-        // var url = "https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+query+"&api_key=9fa5d5bc44bff94e3d5b26efc213830f&format=json";
+        var url = "https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+query+"&api_key="+apiKey+"&format=json&limit=10git";
         fetch(url)
         .then((response) => response.json())
         .then((data) => callback(data));

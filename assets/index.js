@@ -89,16 +89,22 @@ async function rapidData(event) {
 
       var trackTitles = result.tracks.hits[i].track.title;
       var songLinks = result.tracks.hits[i].track.url;
+      var artLinks = result.tracks.hits[i].track.images.coverart;
 
       console.log(trackTitles);
       
       var topTracks = document.createElement("li");
       var trackLinks = document.createElement("a");
+      var albumArt = document.createElement("img");
+
+      albumArt.setAttribute("src", artLinks);
+      albumArt.setAttribute("class", "album-art");
 
       trackLinks.textContent = trackTitles;
       trackLinks.setAttribute("href", songLinks);
       trackLinks.setAttribute("target", "_blank");
 
+      topTracks.append(albumArt);
       topTracks.append(trackLinks);
 
       displayTracks.append(topTracks);

@@ -28,15 +28,18 @@
     <!-- <canvas id="canvas1"></canvas> -->
 
     <section class="hero">
-      <div class="hero-body">
+      <div id="inputDiv" class="hero-body">
 
-        <p class="title">
-          Similar Artist Finder
-        </p>
+        <form>
+          <p class="title">
+            Similar Artist Finder
+          </p>
+          
+          <input class="input is-medium" type="text" placeholder="input an artist or band name" id="artistInput">
 
-        <input class="input is-medium" type="text" placeholder="input an artist or band name" id="inputDiv">
+          <button class="button">Submit</button>
 
-        <button class="button">Submit</button>
+        </form>
 
         <div id="results"></div>
 
@@ -61,7 +64,7 @@
         </p>
     </footer>
 
-
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
     <!-- <script src="./assets/script.js"></script> -->
     <script src="./assets/index.js"></script>

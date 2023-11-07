@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 html {
@@ -86,8 +87,9 @@ form {
 
 h1 {
     color: white;
-    font-size: 2.5rem;
-    font-family: Impact, cursive;
+    font-size: 3.5rem;
+    font-family: Monoton;
+    /* font-family: Fascinate; */
 }
 
 h2 {

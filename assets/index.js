@@ -6,6 +6,12 @@ const resultsDiv = document.getElementById("results");
 const displayResultsDiv = document.getElementById("displayResults");
 const displayTracks = document.getElementById("top-tracks");
 
+// Jquery selector
+
+const trackContainer = $('#toptrack-container');
+
+trackContainer.hide();
+
 searchButton.addEventListener("click", handleSearch);
 
 function lastFm(query, callback) {
@@ -48,6 +54,7 @@ function handleSearch(event) {
   let artistInput = document.getElementById("artistInput");
   let artist = artistInput.value;
   event.preventDefault();
+  trackContainer.hide();
   console.log("hello");
   lastFm(artist, renderlastFm);
 }
@@ -56,6 +63,7 @@ function handleSearch(event) {
 resultsDiv.addEventListener("click", rapidData);
 
 async function rapidData(event) {
+  trackContainer.show();
   console.log(event.target.textContent);
   var simArtists = event.target.textContent;
   const url = `https://shazam.p.rapidapi.com/search?term=${simArtists}&locale=en-US&offset=0&limit=5`;

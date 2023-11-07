@@ -37,11 +37,8 @@ function renderlastFm(data) {
       match: data.similarartists.artist[i].match,
     };
     let artistDiv = document.createElement("button");
-    const roundedMatch = Math.min(
-      100,
-      Math.max(0, Math.round(artist.match * 100))
-    );
-    artistDiv.textContent = `Artist: ${artist.name}, Match: ${roundedMatch}%`;
+    artistDiv.classList = "button similarArtist";
+    artistDiv.textContent = `${artist.name}`;
     resultsDiv.appendChild(artistDiv);
   }
 }
@@ -55,23 +52,28 @@ function handleSearch(event) {
 }
 
 // Shazam Music API
-async function rapidData() {
-const url = 'https://shazam.p.rapidapi.com/songs/list-artist-top-tracks?id=40008598&locale=en-US';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '2df4822ac5msh9ecae0cf2c6416ep158190jsn26b3f314891f',
-		'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
-	}
-};
+resultsDiv.addEventListener("click", rapidData);
 
-try {
-	const response = await fetch(url, options);
-	const result = await response.text();
-	// console.log(result);
-} catch (error) {
-	console.error(error);
-}
-}
+async function rapidData(event) {
+  console.log(event.target.textContent);
+  var simArtists = event.target.textContent;
+  const url = `https://shazam.p.rapidapi.com/search?term=${simArtists}&locale=en-US&offset=0&limit=5`;
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "2df4822ac5msh9ecae0cf2c6416ep158190jsn26b3f314891f",
+      "X-RapidAPI-Host": "shazam.p.rapidapi.com",
+    },
+  };
 
-rapidData();
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result);
+    for (let i = 0; i < result.tracks.hits.length; i++) {
+      console.log(result.tracks.hits[i].track.title);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}

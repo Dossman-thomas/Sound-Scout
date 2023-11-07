@@ -37,6 +37,7 @@ function renderlastFm(data) {
       match: data.similarartists.artist[i].match,
     };
     let artistDiv = document.createElement("button");
+    artistDiv.className = "button";
     const roundedMatch = Math.min(
       100,
       Math.max(0, Math.round(artist.match * 100))

@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sound Scout</title>
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Monoton&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fascinate&family=Monoton&family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./assets/style.css">
-
-</head>
-<body>
-    
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
     <!-- Header -->
 
     <header>
-
       <h1 id="caption">Sound Scout</h1>
 
       <!-- Navbar -->
@@ -33,7 +36,6 @@
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a> -->
-
     </header>
 
     <!-- <canvas id="canvas1"></canvas> -->
@@ -41,38 +43,34 @@
     <!-- Hero Section -->
     <section class="hero">
       <div id="inputDiv" class="hero-body">
-
-        <p class="title">
-          Similar Artist Finder
-        </p>
+        <p class="title">Similar Artist Finder</p>
 
         <form>
-    
-          <input class="input is-medium" type="text" placeholder="input an artist or band name" id="artistInput">
+          <input
+            class="input is-medium"
+            type="text"
+            placeholder="input an artist or band name"
+            id="artistInput"
+          />
 
           <button class="button" id="submit-btn">Submit</button>
-
         </form>
 
         <div id="results"></div>
-
       </div>
     </section>
-    
+
     <!-- LOCAL STORAGE -->
     <div id="local-storage"></div>
 
     <!-- TOP TRACKS SECTION -->
     <div id="toptrack-container" class="container is-fluid">
-
       <h2>Top Tracks:</h2>
 
       <div class="notification">
-
         <div id="artist-avatar"></div>
 
         <ul id="top-tracks"></ul>
-
       </div>
     </div>
 
@@ -84,16 +82,13 @@
         </p>
     </footer> -->
 
-
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-
 
     <!-- JS FILES -->
 
     <!-- <script src="./assets/script.js"></script> -->
 
     <script src="./assets/index.js"></script>
-
-</body>
+  </body>
 </html>

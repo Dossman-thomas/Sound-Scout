@@ -4,6 +4,7 @@ const inputField = document.getElementById("artistInput");
 const searchButton = document.querySelector("#inputDiv button");
 const resultsDiv = document.getElementById("results");
 const displayResultsDiv = document.getElementById("displayResults");
+const displayTracks = document.getElementById("top-tracks");
 
 searchButton.addEventListener("click", handleSearch);
 
@@ -37,12 +38,8 @@ function renderlastFm(data) {
       match: data.similarartists.artist[i].match,
     };
     let artistDiv = document.createElement("button");
-    artistDiv.className = "button";
-    const roundedMatch = Math.min(
-      100,
-      Math.max(0, Math.round(artist.match * 100))
-    );
-    artistDiv.textContent = `Artist: ${artist.name}, Match: ${roundedMatch}%`;
+    artistDiv.classList = "button similarArtist";
+    artistDiv.textContent = `${artist.name}`;
     resultsDiv.appendChild(artistDiv);
   }
 }
@@ -56,23 +53,32 @@ function handleSearch(event) {
 }
 
 // Shazam Music API
-async function rapidData() {
-  const url =
-    "https://shazam.p.rapidapi.com/shazam-events/list?artistId=73406786&l=en-US&from=2022-12-31&limit=50&offset=0";
+resultsDiv.addEventListener("click", rapidData);
+
+async function rapidData(event) {
+  console.log(event.target.textContent);
+  var simArtists = event.target.textContent;
+  const url = `https://shazam.p.rapidapi.com/search?term=${simArtists}&locale=en-US&offset=0&limit=5`;
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "21176ee6bdmsh0833df737f3d1abp14bec9jsn058238d8ac09",
+      "X-RapidAPI-Key": "2df4822ac5msh9ecae0cf2c6416ep158190jsn26b3f314891f",
       "X-RapidAPI-Host": "shazam.p.rapidapi.com",
     },
   };
+
+  displayTracks.innerHTML = "";
   try {
     const response = await fetch(url, options);
-    const result = await response.text();
-    // console.log(result);
+    const result = await response.json();
+    console.log(result);
+    for (let i = 0; i < result.tracks.hits.length; i++) {
+      console.log(result.tracks.hits[i].track.title);
+      var topTracks = document.createElement("li");
+      topTracks.textContent = result.tracks.hits[i].track.title;
+      displayTracks.appendChild(topTracks);
+    }
   } catch (error) {
     console.error(error);
   }
 }
-
-// rapidData();

@@ -1,12 +1,21 @@
+// GLOBAL VARIABLES
+
 const canvas = document.getElementById("canvas1");
 const inputDiv = document.getElementById("inputDiv");
 const inputField = document.getElementById("artistInput");
 const searchButton = document.querySelector("#inputDiv button");
 const resultsDiv = document.getElementById("results");
 const displayResultsDiv = document.getElementById("displayResults");
+const displayTracks = document.getElementById("top-tracks");
+const trackContainer = $('#toptrack-container');
+
+// Hide Top Tracks on load
+trackContainer.hide();
+
 
 searchButton.addEventListener("click", handleSearch);
 
+// Get similar artists function
 function lastFm(query, callback) {
   //  Url for audio scrabbler including the api key
   var apiKey = "9fa5d5bc44bff94e3d5b26efc213830f";
@@ -21,6 +30,7 @@ function lastFm(query, callback) {
     .then((data) => callback(data));
 }
 
+// Print similar artists function
 function renderlastFm(data) {
   console.log(data);
   console.log("Last.FM Related Artist List: " + data);
@@ -37,42 +47,73 @@ function renderlastFm(data) {
       match: data.similarartists.artist[i].match,
     };
     let artistDiv = document.createElement("button");
-    const roundedMatch = Math.min(
-      100,
-      Math.max(0, Math.round(artist.match * 100))
-    );
-    artistDiv.textContent = `Artist: ${artist.name}, Match: ${roundedMatch}%`;
+    artistDiv.classList = "button similarArtist";
+    artistDiv.textContent = `${artist.name}`;
     resultsDiv.appendChild(artistDiv);
   }
 }
 
+// Search function (event handler)
 function handleSearch(event) {
   let artistInput = document.getElementById("artistInput");
   let artist = artistInput.value;
   event.preventDefault();
+  trackContainer.hide();
   console.log("hello");
   lastFm(artist, renderlastFm);
 }
 
-// Shazam Music API
-async function rapidData() {
-  const url =
-    "https://shazam.p.rapidapi.com/shazam-events/list?artistId=73406786&l=en-US&from=2022-12-31&limit=50&offset=0";
+// Shazam Music API function for top tracks list
+resultsDiv.addEventListener("click", rapidData);
+
+async function rapidData(event) {
+  trackContainer.show();
+  console.log(event.target.textContent);
+  var simArtists = event.target.textContent;
+  const url = `https://shazam.p.rapidapi.com/search?term=${simArtists}&locale=en-US&offset=0&limit=5`;
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "21176ee6bdmsh0833df737f3d1abp14bec9jsn058238d8ac09",
+      "X-RapidAPI-Key": "2df4822ac5msh9ecae0cf2c6416ep158190jsn26b3f314891f",
       "X-RapidAPI-Host": "shazam.p.rapidapi.com",
     },
   };
+
+  displayTracks.innerHTML = "";
   try {
     const response = await fetch(url, options);
-    const result = await response.text();
-    // console.log(result);
+    const result = await response.json();
+    console.log(result);
+
+    for (let i = 0; i < result.tracks.hits.length; i++) {
+
+      var trackTitles = result.tracks.hits[i].track.title;
+      var songLinks = result.tracks.hits[i].track.url;
+      var artLinks = result.tracks.hits[i].track.images.coverart;
+
+      console.log(trackTitles);
+      
+      var topTracks = document.createElement("li");
+      var trackLinks = document.createElement("a");
+      var albumArt = document.createElement("img");
+
+      albumArt.setAttribute("src", artLinks);
+      albumArt.setAttribute("class", "album-art");
+
+      trackLinks.textContent = trackTitles;
+      trackLinks.setAttribute("href", songLinks);
+      trackLinks.setAttribute("target", "_blank");
+
+      topTracks.append(albumArt);
+      topTracks.append(trackLinks);
+
+      displayTracks.append(topTracks);
+    }
   } catch (error) {
     console.error(error);
   }
 }
+<<<<<<< HEAD
 
 // rapidData();
 
@@ -92,3 +133,5 @@ try {
 } catch (error) {
     console.error(error);
 }
+=======
+>>>>>>> 40b173531541cebf1c76e26e6515720934ade5b9

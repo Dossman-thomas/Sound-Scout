@@ -1,3 +1,5 @@
+// GLOBAL VARIABLES
+
 const canvas = document.getElementById("canvas1");
 const inputDiv = document.getElementById("inputDiv");
 const inputField = document.getElementById("artistInput");
@@ -5,15 +7,15 @@ const searchButton = document.querySelector("#inputDiv button");
 const resultsDiv = document.getElementById("results");
 const displayResultsDiv = document.getElementById("displayResults");
 const displayTracks = document.getElementById("top-tracks");
-
-// Jquery selector
-
 const trackContainer = $('#toptrack-container');
 
+// Hide Top Tracks on load
 trackContainer.hide();
+
 
 searchButton.addEventListener("click", handleSearch);
 
+// Get similar artists function
 function lastFm(query, callback) {
   //  Url for audio scrabbler including the api key
   var apiKey = "9fa5d5bc44bff94e3d5b26efc213830f";
@@ -28,6 +30,7 @@ function lastFm(query, callback) {
     .then((data) => callback(data));
 }
 
+// Print similar artists function
 function renderlastFm(data) {
   console.log(data);
   console.log("Last.FM Related Artist List: " + data);
@@ -50,6 +53,7 @@ function renderlastFm(data) {
   }
 }
 
+// Search function (event handler)
 function handleSearch(event) {
   let artistInput = document.getElementById("artistInput");
   let artist = artistInput.value;
@@ -59,7 +63,7 @@ function handleSearch(event) {
   lastFm(artist, renderlastFm);
 }
 
-// Shazam Music API
+// Shazam Music API function for top tracks list
 resultsDiv.addEventListener("click", rapidData);
 
 async function rapidData(event) {
@@ -80,11 +84,24 @@ async function rapidData(event) {
     const response = await fetch(url, options);
     const result = await response.json();
     console.log(result);
+
     for (let i = 0; i < result.tracks.hits.length; i++) {
-      console.log(result.tracks.hits[i].track.title);
+
+      var trackTitles = result.tracks.hits[i].track.title;
+      var songLinks = result.tracks.hits[i].track.url;
+
+      console.log(trackTitles);
+      
       var topTracks = document.createElement("li");
-      topTracks.textContent = result.tracks.hits[i].track.title;
-      displayTracks.appendChild(topTracks);
+      var trackLinks = document.createElement("a");
+
+      trackLinks.textContent = trackTitles;
+      trackLinks.setAttribute("href", songLinks);
+      trackLinks.setAttribute("target", "_blank");
+
+      topTracks.append(trackLinks);
+
+      displayTracks.append(topTracks);
     }
   } catch (error) {
     console.error(error);

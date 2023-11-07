@@ -63,3 +63,8 @@ h1 {
     font-size: 2.5rem;
     font-family: Impact, cursive;
 }
+
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid white;
+}

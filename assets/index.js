@@ -113,25 +113,3 @@ async function rapidData(event) {
     console.error(error);
   }
 }
-<<<<<<< HEAD
-
-// rapidData();
-
-const url = 'https://shazam.p.rapidapi.com/songs/list-artist-top-tracks?id=40008598&locale=en-US';
-const options = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Key': '2df4822ac5msh9ecae0cf2c6416ep158190jsn26b3f314891f',
-        'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
-    }
-};
-
-try {
-    const response = await fetch(url, options);
-    const result = await response.text();
-    // console.log(result);
-} catch (error) {
-    console.error(error);
-}
-=======
->>>>>>> 40b173531541cebf1c76e26e6515720934ade5b9

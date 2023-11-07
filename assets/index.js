@@ -1,4 +1,4 @@
-const canvas = document.getElementById('canvas1');
+// const canvas = document.getElementById('canvas1');
 const inputDiv = document.getElementById('inputDiv');
 const inputField = document.getElementById('artistInput');
 const searchButton = document.querySelector('#inputDiv button');

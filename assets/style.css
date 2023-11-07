@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
+    font-family: Permanent Marker;
 }
 
 html {
@@ -49,6 +49,12 @@ footer {
     align-items: center;
 }
 
+button {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
 form {
     display: flex;
     align-items: center;
@@ -56,6 +62,7 @@ form {
 
 .title {
     color: var(--white);
+    letter-spacing: .2rem;
 }
 
 .container {
@@ -95,7 +102,15 @@ form {
 }
 
 .notification {
-    height: 40vh;
+    background-color: var(--submit);
+    height: 100%;
+    color: var(--white);
+    text-align: center;
+    letter-spacing: .2rem;
+}
+
+.hero-body {
+    padding: 1rem 1.5rem;
 }
 
 .hero {
@@ -103,6 +118,7 @@ form {
     /* opacity: .7; */
     text-align: center;
     margin-bottom: 1rem;
+    
 }
 
 h1 {

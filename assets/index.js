@@ -1,5 +1,4 @@
 // GLOBAL VARIABLES
-
 const canvas = document.getElementById("canvas1");
 const inputDiv = document.getElementById("inputDiv");
 const inputField = document.getElementById("artistInput");
@@ -7,12 +6,12 @@ const searchButton = document.querySelector("#inputDiv button");
 const resultsDiv = document.getElementById("results");
 const displayResultsDiv = document.getElementById("displayResults");
 const displayTracks = document.getElementById("top-tracks");
-const trackContainer = $('#toptrack-container');
+const trackContainer = $("#toptrack-container");
 
 // Hide Top Tracks on load
 trackContainer.hide();
 
-
+//Event Listener for the submit button
 searchButton.addEventListener("click", handleSearch);
 
 // Get similar artists function
@@ -46,6 +45,7 @@ function renderlastFm(data) {
       name: data.similarartists.artist[i].name,
       match: data.similarartists.artist[i].match,
     };
+    //Puts the similar artists in button elements and puts them on the screen
     let artistDiv = document.createElement("button");
     artistDiv.classList = "button similarArtist";
     artistDiv.textContent = `${artist.name}`;
@@ -70,6 +70,7 @@ async function rapidData(event) {
   trackContainer.show();
   console.log(event.target.textContent);
   var simArtists = event.target.textContent;
+  //Shazam API URL
   const url = `https://shazam.p.rapidapi.com/search?term=${simArtists}&locale=en-US&offset=0&limit=5`;
   const options = {
     method: "GET",
@@ -79,6 +80,7 @@ async function rapidData(event) {
     },
   };
 
+  //Clears the Top Tracks when another artist button is pressed
   displayTracks.innerHTML = "";
   try {
     const response = await fetch(url, options);
@@ -86,13 +88,13 @@ async function rapidData(event) {
     console.log(result);
 
     for (let i = 0; i < result.tracks.hits.length; i++) {
-
       var trackTitles = result.tracks.hits[i].track.title;
       var songLinks = result.tracks.hits[i].track.url;
       var artLinks = result.tracks.hits[i].track.images.coverart;
 
       console.log(trackTitles);
-      
+
+      //Amends the top tracks, album art and Shazam song link to the website
       var topTracks = document.createElement("li");
       var trackLinks = document.createElement("a");
       var albumArt = document.createElement("img");

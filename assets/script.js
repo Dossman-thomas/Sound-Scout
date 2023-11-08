@@ -1,8 +1,89 @@
 // background setup
 const canvas = document.getElementById('canvas1');
+const inputDiv = document.getElementById('inputDiv');
+const inputField = document.getElementById('artistInput');
+const searchButton = document.querySelector('#inputDiv button');
+const resultsDiv = document.getElementById('results');
+const displayResultsDiv = document.getElementById('displayResults');
+
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
+/*This JavaScript code calculates the position of the "Sound Scout" caption 
+using `getBoundingClientRect()` 
+positioning the input div and search button below it, 
+centered on the canvas, both on initial load and on window resize. 
+*/
+
+
+function centerInputDiv() {
+    // Get the caption and inputDiv elements
+    const caption = document.getElementById('caption');
+  
+    // Calculate the position of the inputDiv
+    const captionRect = caption.getBoundingClientRect();
+    const captionBottom = captionRect.bottom + window.scrollY;
+    const inputDivHeight = inputDiv.offsetHeight;
+  
+    const inputDivTop = captionBottom + 20; // Adjust this value as needed for spacing
+  
+    // Set the position of the inputDiv
+    inputDiv.style.position = 'absolute';
+    inputDiv.style.left = '50%';
+    inputDiv.style.top = `${inputDivTop}px`;
+    inputDiv.style.transform = 'translateX(-50%)';
+  }
+  
+  centerInputDiv();
+
+  window.addEventListener('resize', centerInputDiv);
+
+
+// Function to render the results on the canvas
+function renderLastFm(data) {
+
+    console.log("Last.FM Related Artist List: " + data)
+    console.log("Top Match: " + data.similarartists.artist[0].match)
+    console.log("Similar Artist: " + data.similarartists.artist[0].name)
+    console.log(data.similarartists)
+
+
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = ''; // Clear previous results
+  
+    // Loop through the artist array and display the results
+    const artistArray = data.similarartists.artist;
+  
+    for (let i = 0; i < data.similarartists.artist.length; i++) {
+        let artist = {
+          name: data.similarartists.artist[i].name,
+          match: data.similarartists.artist[i].match,
+        };
+        let artistDiv = document.createElement("div");
+        artistDiv.textContent = `Artist: ${artist.name}, Match: ${artist.match}`;
+        resultsDiv.appendChild(artistDiv);
+      }
+  }
+  
+  // Function to handle the search button click
+  function handleSearch() {
+    let artistInput = document.querySelector("artistInput");
+    let artist = artistInput.value;
+  
+    lastFm(artist);
+  }
+  
+  // Function to fetch data from Audioscrobbler API
+  function lastFm(query) {
+    const apiKey = '9fa5d5bc44bff94e3d5b26efc213830f';
+    const url = `https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${query}&api_key=${apiKey}&format=json`;
+  
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => renderLastFm(data));
+  }
+
 
 console.log(ctx);
 const gradient = ctx.createLinearGradient(0,0,0, canvas.height);
@@ -29,7 +110,7 @@ class Particle {
         this.width = this.radius * 2;
         this.height = this.radius * 2;
     }
-    draw(context, canvas){
+    draw(context){
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         context.fill();
@@ -116,7 +197,6 @@ class Effect {
         });
     }
     createParticles(){
-        var tracks = ["a", "b", "c"]
         for (let i = 0; i < this.numberOfParticles; i++){
             this.particles.push(new Particle(this));
         }
@@ -156,10 +236,12 @@ class Effect {
         this.canvas.height = height;
         this.width = width;
         this.height = height;
+
         const gradient = ctx.createLinearGradient(0,0,0, canvas.height);
         gradient.addColorStop(0, 'darkblue');
         gradient.addColorStop(0.5, 'white');
         gradient.addColorStop(1, 'lightblue');
+
         this.context.fillStyle = gradient;
         this.context.strokeStyle = 'white';
         this.particles.forEach(particle => {
@@ -174,4 +256,7 @@ function animate(){
     effect.handleParticles(ctx, canvas);
     requestAnimationFrame(animate);
 }
-animate();
+
+
+
+// animate();

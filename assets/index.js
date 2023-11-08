@@ -7,11 +7,12 @@ const searchButton = document.querySelector("#inputDiv button");
 const resultsDiv = document.getElementById("results");
 const displayResultsDiv = document.getElementById("displayResults");
 const displayTracks = document.getElementById("top-tracks");
-const trackContainer = $('#toptrack-container');
+const trackContainer = $("#toptrack-container");
+const errorEl = document.getElementById("error");
 
 // Hide Top Tracks on load
 trackContainer.hide();
-
+// getLocal();
 
 searchButton.addEventListener("click", handleSearch);
 
@@ -25,14 +26,24 @@ function lastFm(query, callback) {
     "&api_key=" +
     apiKey +
     "&format=json&limit=10";
+  try{
   fetch(url)
     .then((response) => response.json())
     .then((data) => callback(data));
+  }catch (error) {
+    console.log(error);
+    let errorDiv = document.createElement("div");
+    errorDiv.setAttribute("class", "is-warning");
+    errorDiv.textContent = "Invalid search, try again!";
+    resultsDiv.append(errorDiv);
+  }
 }
 
 // Print similar artists function
 function renderlastFm(data) {
   console.log(data);
+  try{
+   
   console.log("Last.FM Related Artist List: " + data);
   console.log("Top Match: " + data.similarartists.artist[0].match);
   console.log("Similar Artist: " + data.similarartists.artist[0].name);
@@ -52,16 +63,40 @@ function renderlastFm(data) {
     resultsDiv.appendChild(artistDiv);
   }
 }
+catch (error) {
+  console.log(error);
+  let errorDiv = document.createElement("div");
+  errorDiv.setAttribute("class", "is-warning");
+  errorDiv.textContent = "Invalid search, try again!";
+  errorEl.innerHTML = "";
+  errorEl.append(errorDiv);
+}
+}
 
 // Search function (event handler)
 function handleSearch(event) {
+  errorEl.innerHTML = "";
   let artistInput = document.getElementById("artistInput");
   let artist = artistInput.value;
   event.preventDefault();
   trackContainer.hide();
   console.log("hello");
+
+  
+  
+  lastFm(artist, renderlastFm);
+  localStorage.setItem("lastArtist", artist);
+}
+function getLocal() {
+  let lastArtist = localStorage.getItem("lastArtist");
+
+  if (lastArtist) {
+    artist = lastArtist;
+    artistInput.value = artist;
+  }
   lastFm(artist, renderlastFm);
 }
+
 
 // Shazam Music API function for top tracks list
 resultsDiv.addEventListener("click", rapidData);
@@ -86,13 +121,12 @@ async function rapidData(event) {
     console.log(result);
 
     for (let i = 0; i < result.tracks.hits.length; i++) {
-
       var trackTitles = result.tracks.hits[i].track.title;
       var songLinks = result.tracks.hits[i].track.url;
       var artLinks = result.tracks.hits[i].track.images.coverart;
 
       console.log(trackTitles);
-      
+
       var topTracks = document.createElement("li");
       var trackLinks = document.createElement("a");
       var albumArt = document.createElement("img");
@@ -113,3 +147,4 @@ async function rapidData(event) {
     console.error(error);
   }
 }
+getLocal();

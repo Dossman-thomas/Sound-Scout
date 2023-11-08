@@ -25,11 +25,11 @@ function lastFm(query, callback) {
     "&api_key=" +
     apiKey +
     "&format=json&limit=10";
-  try{
+try{
   fetch(url)
     .then((response) => response.json())
     .then((data) => callback(data));
-  }catch (error) {
+}catch (error) {
     console.log(error);
     let errorDiv = document.createElement("div");
     errorDiv.setAttribute("class", "is-warning");
@@ -41,7 +41,7 @@ function lastFm(query, callback) {
 // Print similar artists function
 function renderlastFm(data) {
   console.log(data);
-  try{
+try{
    
   console.log("Last.FM Related Artist List: " + data);
   console.log("Top Match: " + data.similarartists.artist[0].match);
@@ -75,7 +75,7 @@ catch (error) {
 
 // Search function (event handler)
 function handleSearch(event) {
-  errorEl.innerHTML = "";
+errorEl.innerHTML = "";
   let artistInput = document.getElementById("artistInput");
   let artist = artistInput.value;
   event.preventDefault();

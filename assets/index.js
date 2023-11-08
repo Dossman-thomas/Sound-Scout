@@ -9,14 +9,14 @@ const displayResultsDiv = document.getElementById("displayResults");
 const displayTracks = document.getElementById("top-tracks");
 const trackContainer = $('#toptrack-container');
 
+
 // Hide Top Tracks on load
 trackContainer.hide();
-
 
 searchButton.addEventListener("click", handleSearch);
 
 // Get similar artists function
-function lastFm(query, callback) {
+function lastFm(query, callback){
   //  Url for audio scrabbler including the api key
   var apiKey = "9fa5d5bc44bff94e3d5b26efc213830f";
   var url =

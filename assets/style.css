@@ -62,7 +62,7 @@ form {
 
 li {
     display: flex; 
-    /* justify-content: center; */
+    /* justify-content:center; */
     align-items: center;
     text-align: center;
     margin-bottom: 1rem;
@@ -85,9 +85,9 @@ li {
 }
 
 .album-art {
-    width: 80px;
-    height: 80px;
-    margin-right: 1rem;
+    width: 10rem;
+    height: 10rem;
+    margin-right: 3rem;
 }
 
 #results {
@@ -116,6 +116,10 @@ li {
     border-bottom-right-radius: 0;
 }
 
+#top-tracks {
+    width: 50rem;
+}
+
 .notification {
     background-color: var(--submit);
     height: 100%;
@@ -123,7 +127,7 @@ li {
     text-align: center;
     letter-spacing: .2rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
 }
 

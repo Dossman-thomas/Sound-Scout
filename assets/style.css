@@ -115,6 +115,10 @@ li {
   border-bottom-right-radius: 0;
 }
 
+#top-tracks {
+    width: 50rem;
+}
+
 .notification {
   background-color: var(--submit);
   height: 100%;
@@ -124,6 +128,12 @@ li {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+
+.is-warning {
+    color: var(--submit);
+    margin-top: 1rem;
+    font-size: 1.2rem;
 }
 
 .hero-body {

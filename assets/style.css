@@ -130,6 +130,12 @@ li {
   flex-wrap: wrap;
 }
 
+.is-warning {
+    color: var(--submit);
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
 .hero-body {
   padding: 1rem 1.5rem;
 }

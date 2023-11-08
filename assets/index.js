@@ -67,7 +67,8 @@ catch (error) {
 
 // Search function (event handler)
 function handleSearch(event) {
-errorEl.innerHTML = "";
+  errorEl.innerHTML = "";
+
   let artistInput = document.getElementById("artistInput");
   let artist = artistInput.value;
   event.preventDefault();
@@ -76,6 +77,7 @@ errorEl.innerHTML = "";
   lastFm(artist, renderlastFm);
   localStorage.setItem("lastArtist", artist);
 }
+
 function getLocal() {
   let lastArtist = localStorage.getItem("lastArtist");
 
@@ -91,6 +93,8 @@ function getLocal() {
 resultsDiv.addEventListener("click", rapidData);
 
 async function rapidData(event) {
+  errorEl.innerHTML = "";
+  
   trackContainer.show();
   console.log(event.target.textContent);
   var simArtists = event.target.textContent;

@@ -1,3 +1,5 @@
+/* CSS VARIABLES */
+
 :root {
   --bckgrnd: #292a2d;
   --blocks: rgb(20, 20, 20);
@@ -5,6 +7,8 @@
   --accent: rgb(121, 195, 195);
   --white: white;
 }
+
+/* UNIVERSAL STYLES */
 
 * {
   margin: 0;
@@ -17,14 +21,7 @@ html {
   background-color: var(--bckgrnd);
 }
 
-#canvas1 {
-  background: rgb(20, 91, 149);
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* opacity: .4; */
-  z-index: -1;
-}
+/* SEMANTIC ELEMENT STYLES */
 
 header {
   background-color: rgb(20, 20, 20);
@@ -34,18 +31,6 @@ header {
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-footer {
-  background: rgb(20, 20, 20);
-  color: var(--white);
-  /* position:absolute;
-    bottom: 0; */
-  width: 100%;
-  height: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 button {
@@ -68,6 +53,36 @@ li {
   margin-bottom: 1rem;
 }
 
+h1 {
+  color: var(--white);
+  font-size: 3.5rem;
+  font-family: Monoton;
+  /* font-family: Fascinate; */
+  letter-spacing: 5px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+  border-bottom: 1px solid var(--white);
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--white);
+}
+
+/* CLASS SELECTORS */
+
+.hero {
+  background-color: var(--bckgrnd);
+  /* opacity: .7; */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.hero-body {
+  padding: 1rem 1.5rem;
+}
+
 .title {
   color: var(--white);
   letter-spacing: 0.2rem;
@@ -88,6 +103,25 @@ li {
   height: 80px;
   margin-right: 1rem;
 }
+
+.notification {
+  background-color: var(--submit);
+  height: 100%;
+  color: var(--white);
+  text-align: center;
+  letter-spacing: 0.2rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.is-warning {
+    color: var(--submit);
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+/* ID SELECTORS */
 
 #results {
   display: flex;
@@ -119,48 +153,11 @@ li {
     width: 50rem;
 }
 
-.notification {
-  background-color: var(--submit);
-  height: 100%;
-  color: var(--white);
-  text-align: center;
-  letter-spacing: 0.2rem;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+#canvas1 {
+  background: rgb(20, 91, 149);
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* opacity: .4; */
+  z-index: -1;
 }
-
-.is-warning {
-    color: var(--submit);
-    margin-top: 1rem;
-    font-size: 1.2rem;
-}
-
-.hero-body {
-  padding: 1rem 1.5rem;
-}
-
-.hero {
-  background-color: var(--bckgrnd);
-  /* opacity: .7; */
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-h1 {
-  color: var(--white);
-  font-size: 3.5rem;
-  font-family: Monoton;
-  /* font-family: Fascinate; */
-  letter-spacing: 5px;
-}
-
-h2 {
-  font-size: 1.5rem;
-  letter-spacing: 0.2rem;
-  border-bottom: 1px solid var(--white);
-  margin-bottom: 1rem;
-  text-align: center;
-  color: var(--white);
-}
-

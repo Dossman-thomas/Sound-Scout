@@ -88,67 +88,59 @@ resultsDiv.addEventListener("click", rapidData);
 
 async function rapidData(event) {
   errorEl.innerHTML = "";
-
   trackContainer.show();
-  console.log(event.target.textContent);
-  var simArtists = event.target.textContent;
-  //Shazam API URL
-  const url = `http://localhost:3001/api/shazam?term=${simArtists}`;
 
-  //Clears the Top Tracks when another artist button is pressed
+  const simArtists = event.target.textContent;
+  const url = `http://localhost:3001/api/shazam?term=${encodeURIComponent(simArtists)}`;
+
   displayTracks.innerHTML = "";
+
   try {
     const response = await fetch(url);
-
-    if (response.status === 302) {
-      displayTracks.innerHTML =
-        "<p>Unable to fetch tracks — API redirected request.</p>";
-      console.error("Redirect detected! Check API key or rate limit.");
-      return;
-    }
-
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-    const text = await response.text();
-    if (!text) throw new Error("Empty response from API");
-    console.log(text);
+    const result = await response.json();
+    console.log("Full API result:", result);
 
-    const result = await response.json(text);
-    console.log(result);
-
-    if (!result.tracks || !result.tracks.hits.length) {
+    // ✅ Adapted for v2 API
+    const songs = result?.results?.songs?.data;
+    if (!songs || songs.length === 0) {
       displayTracks.innerHTML = "<p>No top tracks found for this artist.</p>";
       return;
     }
 
-    for (let i = 0; i < result.tracks.hits.length; i++) {
-      var trackTitles = result.tracks.hits[i].track.title;
-      var songLinks = result.tracks.hits[i].track.url;
-      var artLinks = result.tracks.hits[i].track.images.coverart;
+    songs.forEach((song) => {
+      const attributes = song.attributes;
+      const title = attributes.name;
+      const artist = attributes.artistName;
+      const link = attributes.url;
+      const artwork = attributes.artwork?.url
+        .replace("{w}", "200")
+        .replace("{h}", "200");
 
-      console.log("track titles: " + trackTitles);
+      console.log(`🎵 ${artist} - ${title}`);
 
-      //Amends the top tracks, album art and Shazam song link to the website
-      var topTracks = document.createElement("li");
-      var trackLinks = document.createElement("a");
-      var albumArt = document.createElement("img");
+      const topTracks = document.createElement("li");
+      const trackLinks = document.createElement("a");
+      const albumArt = document.createElement("img");
 
-      albumArt.setAttribute("src", artLinks);
-      albumArt.setAttribute("class", "album-art");
+      albumArt.src = artwork;
+      albumArt.className = "album-art";
 
-      trackLinks.textContent = trackTitles;
-      trackLinks.setAttribute("href", songLinks);
-      trackLinks.setAttribute("target", "_blank");
+      trackLinks.textContent = `${title}`;
+      trackLinks.href = link;
+      trackLinks.target = "_blank";
 
       topTracks.append(albumArt);
       topTracks.append(trackLinks);
 
       displayTracks.append(topTracks);
-    }
+    });
   } catch (error) {
-    console.error(error);
+    console.error("Fetch error:", error);
     displayTracks.innerHTML =
       "<p>Error fetching tracks. Please try again later.</p>";
   }
 }
+
 getLocal();

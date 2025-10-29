@@ -111,7 +111,6 @@ h2 {
   text-align: center;
   letter-spacing: 0.2rem;
   display: flex;
-  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
@@ -122,6 +121,9 @@ h2 {
 }
 
 /* ID SELECTORS */
+#toptrack-container {
+  width: clamp(500px, 90%, 1000px);
+}
 
 #results {
   display: flex;

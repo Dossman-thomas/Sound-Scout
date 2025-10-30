@@ -30,16 +30,6 @@ The application will save each user input so if the page reloads for any reason,
 
 ![Sound-scout-SS2](./public/assets/images/sound-scout-ss2.png)
 
-## Collaborators
-
-- **[Angel Gonzalez](https://github.com/Utero93)**: Researched and verified a working API to fetch data from the Last FM API for finding similar artists, and helped with coding the application's functionality using JS.
-
-- **[Nick Settembrino](https://github.com/nsettyy)**: Researched and verified a working API to fetch data from the Shazam API for rending similar artist top songs, and helped with coding the application's functionality using JS.
-
-- **[Tom Dossman](https://github.com/Dossman-thomas)**: created the framework, design, and css styling for the application.  Also, contributed with coding the application's functionality using JS.
-
-- **[Zoe Keegan](https://github.com/zoekeegan)**: Worked on local storage functionality using JS.
-
 ## Technologies
 
 This project is built using the following technologies:
@@ -49,6 +39,10 @@ This project is built using the following technologies:
 - **CSS**
 
 - **JavaScript**
+
+- **Node**
+
+- **Express**
 
 - **Framework:** [Bulma CSS](https://bulma.io/)
 
@@ -64,4 +58,9 @@ This project is built using the following technologies:
 
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-![jQuery](https://img.shields.io/badge/jQuery-3.6.0-blue.svg)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+
+![Bulma](https://img.shields.io/badge/bulma-00D0B1?style=for-the-badge&logo=bulma&logoColor=white)
+

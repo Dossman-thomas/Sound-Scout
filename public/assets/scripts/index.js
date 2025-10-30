@@ -99,7 +99,7 @@ async function rapidData(event) {
   const baseUrl =
   window.location.hostname === "127.0.0.1"
     ? "http://localhost:3001"
-    : "https://your-render-app-name.onrender.com";
+    : "https://sound-scout-ef3u.onrender.com";
   const url = `${baseUrl}/api/shazam?term=${encodeURIComponent(simArtists)}`;
 
   displayTracks.innerHTML = "";

@@ -14,18 +14,21 @@ An interactive music discovery application that takes user input of their favori
 
 visit: 
 
-https://nsettyy.github.io/sound-scout/
+https://sound-scout-ef3u.onrender.com/
 
 When an artist/band name is submitted in the input field, a button list of similar artists is rendered. When the user clicks on a similar artist button, links to that artist/band's top songs will display on the page for the user to listen to previews, watch music videos, sing along with lyrics, and book concert tickets.
 
 The application will save each user input so if the page reloads for any reason, the last artist queried will display similar artists on the page. 
 
+# Demo
+![Sound-scout-demo-gif](./public/assets/gifs/sound-scout-demo.gif)
+
 
 ## Screenshots
 
-![Sound-scout-SS1](./assets/images/sound-scout-ss1.png)
+![Sound-scout-SS1](./public/assets/images/sound-scout-ss1.png)
 
-![Sound-scout-SS2](./assets/images/sound-scout-ss2.png)
+![Sound-scout-SS2](./public/assets/images/sound-scout-ss2.png)
 
 ## Collaborators
 

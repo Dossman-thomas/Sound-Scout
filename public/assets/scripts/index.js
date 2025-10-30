@@ -95,7 +95,12 @@ async function rapidData(event) {
   trackContainer.show();
 
   const simArtists = event.target.textContent;
-  const url = `http://localhost:3001/api/shazam?term=${encodeURIComponent(simArtists)}`;
+
+  const baseUrl =
+  window.location.hostname === "127.0.0.1"
+    ? "http://localhost:3001"
+    : "https://your-render-app-name.onrender.com";
+  const url = `${baseUrl}/api/shazam?term=${encodeURIComponent(simArtists)}`;
 
   displayTracks.innerHTML = "";
 

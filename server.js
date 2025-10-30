@@ -17,8 +17,8 @@ app.get("/api/shazam", async (req, res) => {
   const url = `https://shazam.p.rapidapi.com/v2/search?term=${encodeURIComponent(term)}&locale=en-US&offset=0&limit=5`;
 
   try {
-    console.log("RapidAPI Key: ", process.env.RAPIDAPI_KEY ? "Loaded" : "Not Loaded");
-    console.log("RapidAPI Key: ", process.env.RAPIDAPI_KEY);
+    // console.log("RapidAPI Key: ", process.env.RAPIDAPI_KEY ? "Loaded" : "Not Loaded");
+    // console.log("RapidAPI Key: ", process.env.RAPIDAPI_KEY);
 
     const response = await fetch(url, {
       method: "GET",
@@ -45,6 +45,5 @@ app.get("/api/shazam", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch from Shazam API" });
   }
 });
-
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

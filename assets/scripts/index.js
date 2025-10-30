@@ -38,7 +38,11 @@ function renderlastFm(data) {
     console.log(data.similarartists.artist);
 
     let resultsDiv = document.getElementById("results");
+    const instruction = document.getElementById("ux-instruction");
     resultsDiv.innerHTML = ""; // Clear previous Search Results
+
+    // once data is fetched, display user friendly instruction text
+    instruction.textContent = "Click on an artist to see their top tracks:";
 
     for (let i = 0; i < data.similarartists.artist.length; i++) {
       let artist = {
@@ -118,7 +122,7 @@ async function rapidData(event) {
         .replace("{w}", "200")
         .replace("{h}", "200");
 
-      console.log(`🎵 ${artist} - ${title}`);
+      // console.log(`🎵 ${artist} - ${title}`);
 
       const topTracks = document.createElement("li");
       const trackLinks = document.createElement("a");

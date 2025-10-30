@@ -121,8 +121,15 @@ h2 {
 }
 
 /* ID SELECTORS */
+#ux-instruction {
+  color: var(--white); 
+  margin-top: 14px;
+
+}
+
 #toptrack-container {
   width: clamp(500px, 90%, 1000px);
+  margin: 0 auto; 
 }
 
 #results {
